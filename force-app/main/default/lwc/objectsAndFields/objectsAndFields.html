@@ -1,0 +1,55 @@
+<template>
+    <div style=" position: relative;" >
+    <!-- Spinner -->
+        <div if:true={showSpinner}>
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+
+        <div class="slds-box slds-theme_shade">
+            <!-- Select Object ComboBox -->
+            <div class="slds-size_small">
+                <lightning-combobox label="Select Object"
+                    name="selectObject" value={selectedobj}
+                    placeholder="Select Object" options={objectList} onchange={onObjectSelection}>
+                </lightning-combobox>
+            </div>
+            <lightning-button label="Get Records" variant="brand" class="slds-m-around_small" onclick={selectFields}></lightning-button>
+            <lightning-button label="Show Schema" variant="brand" class="slds-m-around_small" onclick={showFieldSchema}></lightning-button>
+            <br/>
+            <!-- Select Field of selected object -->
+            <template if:true={showSchema}>
+                <div style="width: 100%;" class="slds-scrollable_x">
+                    <c-object-field-schema object-name={selectedObj}></c-object-field-schema>
+                </div>
+                <div class="slds-m-right_small" style="width: 200px; height: 300px; float: left;">
+                     {insertField}
+                </div>
+            </template>
+            <template if:true={showFields}>
+                <div class="slds-grid">
+                    <div class="slds-size_1-of-2">
+                        <lightning-dual-listbox name="Fields" value={values} label="Selecte Fields"
+                            source-label="Available" selected-label="Selected"
+                            options={FieldsList} onchange={onSelectFields}>
+                        </lightning-dual-listbox>
+                    </div>
+                    <div class="slds-size_1-of-3 ">
+                        <!-- Process Button -->
+                        <template if:true={showProcessBtn}>
+                            <div class="slds-align_absolute-center slds-m-top_xx-large">
+                                <lightning-button class="slds-m-top_xx-large"  variant="brand" label="Process" onclick={processButton}></lightning-button>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </template>
+        </div> 
+            <br/>
+            <template if:true={isdataSelected}>
+                <!-- Pagination Component Attached passing Selected object and Fields as Attribute -->
+                <div>
+                    <c-client-side-pagination selectedobject={selectedObj} selectedfields={selectedFields}></c-client-side-pagination>
+                </div>      
+            </template>
+    </div>
+</template>

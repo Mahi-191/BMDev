@@ -1,0 +1,111 @@
+<apex:page showHeader="false" sidebar="false">
+    <style>
+        .container {
+            text-align: center;
+            background-color: #f7f7f7;
+            padding: 20px;
+            border: 1px solid #e1e1e1;
+            border-radius: 5px;
+            margin: 20px auto;
+            max-width: 500px;
+            font-family: Arial, sans-serif;
+        }
+
+        .heading h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        textarea, #richtext {
+            width: 90%;
+            height: 150px;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            resize: none;
+        }
+
+        .result {
+            font-size: 18px;
+            color: #555;
+        }
+    </style>
+    <div class="container">
+        <div class="heading">
+            <h1>Word and Character Count</h1>
+        </div>
+        <apex:form >
+            <apex:inputTextarea styleClass="myTextarea" />
+            <p class="result">
+                <span id="wordCount1">0</span> Words and
+                <span id="charCount1">0</span> Characters
+            </p>
+
+            <apex:inputTextarea id="richtext" styleClass="myTextarea" richText="True" />
+            <p class="result">
+                <span id="wordCount2">0</span> Words and
+                <span id="charCount2">0</span> Characters
+            </p>
+        </apex:form>
+    </div>
+
+    <script>
+        function countCharactersAndWords() {
+            // var textareas = document.querySelectorAll('.myTextarea');
+            //console.log('some _'+ JSON.stringify(textareas));
+            for (var i in CKEDITOR.instances) {
+            	CKEDITOR.instances[i].on('change', function() {
+                    const content = this.document.$.body.innerHTML;
+                    countWords(content);
+                    console.log(typeof content);
+                    console.log(content.replace(/<\/?[^>]+(>|$)/g, ""));
+                    console.log(content.replace(/<\/?[^>]+(>|$)/g, "").length);
+                    //console.log(i.editor1.getData());
+                 	var char = document.getElementById('charCount2');
+                	var word = document.getElementById('wordCount2');
+                });
+        	}
+            // textareas.forEach(function (textarea, index) {
+            //  console.log('how may'+ (index + 1));
+            //  var char = document.getElementById('charCount2');
+            // var word = document.getElementById('wordCount2');
+
+            //textarea.addEventListener('input', function () {
+            //  var content = this.value;
+            // var charCount = countCharacters(content);
+            // var wordCount = countWords(content);
+
+                    // Manually update the counts using innerHTML
+            //  char.innerHTML = charCount;
+            //   word.innerHTML = wordCount;
+            //    console.log('Char' +charCount+ 'word' + wordCount)
+            //  });
+            //});
+        }
+
+        function countCharacters(content) {
+            // Remove HTML tags using a regular expression
+            var cleanContent = content.replace(/<\/?[^>]+(>|$)/g, "");
+
+            // Count characters in the cleaned content
+            return cleanContent.length;
+        }
+
+        function countWords(content) {
+            // Remove HTML tags using a regular expression
+            var cleanContent = content.replace(/<\/?[^>]+(>|$)/g, "");
+
+            // Remove leading/trailing whitespace and split into words
+            var words = cleanContent.trim().split(/\s+/);
+
+            // Count words
+            return words.length;
+        }
+
+        // Call the function when the window loads
+        window.onload = countCharactersAndWords;
+    </script>
+</apex:page>

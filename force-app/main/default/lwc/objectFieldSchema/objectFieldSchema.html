@@ -1,0 +1,25 @@
+<template>
+    <div style="display: flex; flex-direction: row;">
+        <div class="slds-scrollable slds-theme_shade slds-m-right_small" style="width: 200px; height: 300px; float: left;">
+            <ul style="line-height:150%;  font-size: 18px;">
+                <template for:each={fields} for:item="field" for:index="index">
+                    <div key={field.apiName} class={field.css}>
+                       <li lwc:if={field.isRelationField} >
+                        <a data-objname={field.relatedObject} onclick={openObj} data-field={field.apiName} data-index={index}>
+                            {field.label} >
+                        </a>
+                       </li> 
+                        <li lwc:else>
+                            <a data-field={field.apiName} onclick={selectField}  data-index={index}>
+                                {field.label} 
+                            </a>
+                        </li>
+                    </div>
+                </template>
+            </ul>
+        </div>
+        <template if:true={openRelatedFields}>
+            <c-object-field-schema object-name={selectedObjectname} selected-field={selectedFieldTmp}></c-object-field-schema>
+        </template>
+    </div>
+</template>

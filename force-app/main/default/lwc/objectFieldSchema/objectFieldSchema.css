@@ -1,0 +1,30 @@
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #c0c0c0; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(44, 44, 184); 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(30, 30, 104); 
+  }
+
+  .active-field {
+    background-color: rgb(44, 44, 184);
+    color: white;
+    font-weight: bold;
+  }
+
+  .inactive-field{
+    color: black;
+  }

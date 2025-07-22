@@ -1,0 +1,52 @@
+<template>
+
+    <div >
+
+        <div class="slds-grid sticky" id="myHeader" style="display: flex; flex-direction: row;">
+
+            <div style=" background-color: white; width: 40%; height: 100px;" class="slds-col">
+                <span style="display: flex; justify-content: space-around;">
+                    <!-- <img style="width: auto; height: 100px;" src={icon}> -->
+                    <div style="background-color: #febb02; width: 40px; height: 20px;"></div>
+                </span>
+            </div>
+            
+            <div style="background-color: white; display: flex; flex-direction: column; width: 60%; height: 100px; " class="slds-col">
+                <div class="slds-m-top_medium slds-var-m-right_x-large">
+                    <button class="slds-button slds-button_brand" style="background-color: black; color: #febb02; float: right; border-radius: 0px;">How to Book</button>
+                </div>
+
+               <nav class="navigation">
+                    <div style="margin-left: 50%; display: flex; justify-content: flex-end; margin-top: 3%; max-width:95%" class="navbar slds-m-right_xx-large" id="example">
+                        <div><a onclick={handleMouseOver} class={sect1} href="#section1" data-id="section1">SUMMARY </a></div>
+                        <div style="margin-left: 5%;"><a onclick={handleMouseOver} class={sect2} href="#section2" data-id="section2">ITINERARY </a></div>
+                        <div style="margin-left: 5%;"><a onclick={handleMouseOver} class={sect3} href="#section3" data-id="section3">GALLERY </a></div>
+                        <div style="margin-left: 5%;"><a onclick={handleMouseOver} class={sect4} href="#section4" data-id="section4">COSTS </a></div>
+                        <div style="margin-left: 5%;"><a onclick={handleMouseOver} class={sect5} href="#section5" data-id="section5">MORE </a></div>
+                    </div>
+                 </nav>
+
+            </div>
+        </div>
+   
+        <div class="main-content">
+            <section class="sec" id="section1"  data-id="section1">
+                <c-component1></c-component1>
+            </section></br>
+            <section  class="sec" id="section2" data-id="section2">
+                <c-component2></c-component2>
+            </section></br>
+            <section class="sec" id="section3"  data-id="section3">
+                <c-component3></c-component3>
+            </section></br>
+            <section class="sec" id="section4" data-id="section4">
+                <c-component1></c-component1>
+            </section></br>
+            <section class="sec" id="section5" data-id="section5">
+                <c-component3></c-component3>
+            </section>
+        </div>
+
+    </div>
+
+</template>
