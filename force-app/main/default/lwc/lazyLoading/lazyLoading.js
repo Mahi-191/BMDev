@@ -1,3 +1,7 @@
+// Component Name : lazyLoading
+// Purpose : To show Lazy Loading in lwc
+// crateddate : 10/09/2022
+// Last updated date : 13/10/2022
 import { LightningElement, track, wire, api } from 'lwc';
 import showFieldDynamically from '@salesforce/apex/LazyLoadingController.showFieldDynamically'
 export default class LazyLoading extends LightningElement {
